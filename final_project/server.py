@@ -1,24 +1,48 @@
-from machinetranslation import translator
+"""
+This is file defines to translator API routes.
+"""
+
 from flask import Flask, render_template, request
-import json
+
+from machinetranslation import translator
 
 app = Flask("Web Translator")
 
+
 @app.route("/englishToFrench")
-def englishToFrench():
-    textToTranslate = request.args.get('textToTranslate')
-    # Write your code here
-    return "Translated text to French"
+def english_to_french():
+    """
+    This route takes a param for input text and returns a translated string:
+    textToTranslate: str
+    """
+    text = request.args.get('textToTranslate')
+
+    translated = translator.english_to_french(text)
+
+    return translated
+
 
 @app.route("/frenchToEnglish")
-def frenchToEnglish():
-    textToTranslate = request.args.get('textToTranslate')
-    # Write your code here
-    return "Translated text to English"
+def french_to_english():
+    """
+    This route takes a param for input text and returns a translated string:
+    textToTranslate: str
+    """
+    text = request.args.get('textToTranslate')
+
+    translated = translator.french_to_english(text)
+
+    return translated
+
 
 @app.route("/")
-def renderIndexPage():
-    # Write the code to render template
+def render_index():
+    """
+    This is the root route for this server.
+    It renders the index.html static page.
+    """
+    return render_template("static/index.html")
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

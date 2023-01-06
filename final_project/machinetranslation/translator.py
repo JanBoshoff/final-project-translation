@@ -65,11 +65,6 @@ def french_to_english(french_text: str) -> str:
     return _translate(lang_translator, french_text, 'fr', 'en')
 
 
-def _check_input(input_val: str):
-    if input_val is None:
-        raise Exception('Input value can not be None')
-
-
 def _translate(translator: LanguageTranslatorV3, text: str, source_lang_id: str, target_lang_id: str) -> str:
     translation = translator.translate(
         text=text,
@@ -84,3 +79,9 @@ def _translate(translator: LanguageTranslatorV3, text: str, source_lang_id: str,
         raise TranslationFailedException(ex.code, ex.message) from ex
 
     return translated_text
+
+
+def _check_input(input_val: str):
+    if input_val is None:
+        raise Exception('Input value can not be None')
+

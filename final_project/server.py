@@ -41,7 +41,7 @@ def render_index():
     This is the root route for this server.
     It renders the index.html static page.
     """
-    return render_template("static/index.html")
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
